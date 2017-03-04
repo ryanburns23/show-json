@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>show-json demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../show-json.html">
+
+    <style is="custom-style" include="demo-pages-shared-styles">
+    </style>
+  </head>
+  <body>
+
+      <dom-module id="demo-element">
+        <template>
+          <style>
+            :host {
+              display: block;
+            }
+          </style>
+
+          <show-json json="[[json]]"></show-json>
+
+        </template>
+        <script>
+        document.addEventListener('WebComponentsReady', function() {
+          Polymer({
+            is: 'demo-element',
+            properties: {
+              json: {
+                type: Object,
+                value: ["foo","bar",{"foo":"bar"},1,2,[3,4],null,true,{"nested":{"inner":{"array":[2,3.14,321987432],"jagged array":[43,[43,[123,32,43,54]]]}}},{"blah":"slime"},"string with \"escaped quotes\", a'p'o's't'r'a'p'h'e's, commas, [brackets] and {braces}"]
+              }
+            }
+          });
+        });
+        </script>
+      </dom-module>
+
+      <demo-element></demo-element>
+
+  </body>
+</html>
