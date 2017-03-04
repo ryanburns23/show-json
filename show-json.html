@@ -3,6 +3,7 @@
 <link rel="import" href="../prism-element/prism-highlighter.html">
 <link rel="import" href="../prism-element/prism-theme-default.html">
 <link rel="import" href="../paper-fab/paper-fab.html">
+<link rel="import" href="show-json-icons.html">
 
 <!--
 `show-json`
@@ -37,7 +38,7 @@ show json w/ syntax higlighting
       id="copyButton"
       hidden$="[[hideCopyButton]]"
       mini
-      icon="content-copy"
+      icon="showJson:content-copy"
       title="copy to clipboard"
       on-tap="_copyToClipboard">
     </paper-fab>
@@ -85,11 +86,11 @@ show json w/ syntax higlighting
         var result = false;
         try {
           result = document.execCommand('copy');
-          this.$.copyButton.icon = 'done';
+          this.$.copyButton.icon = 'showJson:done';
         } catch (err) {
           // Copy command is not available
           Polymer.Base._error(err);
-          this.$.copyButton.icon = 'error';
+          this.$.copyButton.icon = 'showJson:error';
         }
         // Return to the copy button after a second.
         setTimeout(this._resetCopyButtonState.bind(this), 1000);
@@ -98,7 +99,7 @@ show json w/ syntax higlighting
       },
 
       _resetCopyButtonState: function() {
-        this.$.copyButton.icon = 'content-copy';
+        this.$.copyButton.icon = 'showJson:content-copy';
       }
     });
   </script>
