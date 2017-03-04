@@ -9,6 +9,12 @@
 `show-json`
 show json w/ syntax higlighting
 
+### Styling
+Custom property | Description | Default
+----------------|-------------|----------
+`--show-json-action-bg-color` | copy button background color | `#2196F3`
+`--show-json-action-color` | copy button icon color | `white`
+
 @demo demo/index.html
 -->
 
@@ -21,8 +27,8 @@ show json w/ syntax higlighting
         padding: 20px;
       }
       paper-fab {
-        background: var(--show-json-action-color, green);
-        color: white;
+        background: var(--show-json-action-bg-color, #2196F3);
+        color: var(--show-json-action-color, white);
         width: 33px;
         height: 33px;
       }
