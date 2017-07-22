@@ -28,5 +28,5 @@ show json w/ syntax higlighting
 
 ## Install
 ```
-bower i ryanburns23/show-json --S
+bower i arlejeun/show-json --S
 ```
