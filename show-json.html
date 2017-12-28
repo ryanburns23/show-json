@@ -56,7 +56,7 @@ Custom property | Description | Default
       mini
       icon="showJson:content-copy"
       title="copy to clipboard"
-      on-tap="_copyToClipboard">
+      on-tap="copyToClipboard">
     </paper-fab>
 
     <marked-element markdown=[[_markdown]]>
@@ -81,19 +81,26 @@ Custom property | Description | Default
         },
         _markdown: {
           type: String
-        }
+        },
+        copyButtonElement: {
+          type: Object,
+        },
       },
 
       // observe all changes to json
       observers: [
         "_computeMarkdown(json.*)",
       ],
+      
+      attached: function() {
+        this.copyButtonElement = this.copyButtonElement || this.$.copyButton;
+      }
 
       _computeMarkdown: function(){
         this._markdown = '```\n' + JSON.stringify(this.json, null, 2) + '\n' + '```';
       },
 
-      _copyToClipboard: function() {
+      copyToClipboard: function() {
         // From https://github.com/google/material-design-lite/blob/master/docs/_assets/snippets.js
         var snipRange = document.createRange();
         snipRange.selectNodeContents(this.$.code);
@@ -103,11 +110,11 @@ Custom property | Description | Default
         var result = false;
         try {
           result = document.execCommand('copy');
-          this.$.copyButton.icon = 'showJson:done';
+          this.copyButtonElement.icon = 'showJson:done';
         } catch (err) {
           // Copy command is not available
           Polymer.Base._error(err);
-          this.$.copyButton.icon = 'showJson:error';
+          this.copyButtonElement.icon = 'showJson:error';
         }
         // Return to the copy button after a second.
         setTimeout(this._resetCopyButtonState.bind(this), 1000);
